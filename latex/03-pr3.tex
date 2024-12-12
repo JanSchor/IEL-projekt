@@ -1,0 +1,74 @@
+\section{Příklad 3}
+
+\tretiZadani{A}
+
+Tvorba rovnice pro každý uzel (A, B, C) podle I. K.Z.:
+\nopagebreak
+\begin{align*}
+A: & \quad
+\frac{U_1 - U_A}{R_1} - \frac{U_A + U_2 - U_B}{R_3} + \frac{U_B - U_A}{R_4} - \frac{U_A}{R_2} = 0 \\
+B: & \quad \frac{U_A + U_2 - U_B}{R_3} + I - \frac{U_B - U_C}{R_6} - \frac{U_B - U_A}{R_4} = 0 \\
+C: & \quad \frac{U_B - U_C}{R_6} - I - \frac{U_C}{R_5} = 0
+\end{align*}
+
+Úprava rovnic pro dosazení do matice:
+\nopagebreak
+\begin{align*}
+A: & \quad
+- (\frac{1}{R_1} + \frac{1}{R_3} + \frac{1}{R_4} + \frac{1}{R_2})U_A
++ (\frac{1}{R_3} + \frac{1}{R_4})U_B
++ 0 U_C
+= \frac{U_2}{R_3} - \frac{U_1}{R_1} \\
+B: & \quad
+(\frac{1}{R_3} + \frac{1}{R_4})U_A
+- (\frac{1}{R_3} + \frac{1}{R_4} + \frac{1}{R_6})U_B
++ \frac{1}{R_6} U_C
+= -I-\frac{U_2}{R_3} \\
+C: & \quad
+0 U_A
++ \frac{1}{R_6}U_B
+- (\frac{1}{R_5} + \frac{1}{R_6})U_C
+= I \\
+\end{align*}
+
+Maticový tvar rovnic:
+\nopagebreak
+\begin{align*}
+\begin{bmatrix}
+-\left(\frac{1}{R_1} + \frac{1}{R_3} + \frac{1}{R_4} + \frac{1}{R_2}\right) & \frac{1}{R_3} + \frac{1}{R_4} & 0 \\
+\frac{1}{R_3} + \frac{1}{R_4} & -\left(\frac{1}{R_3} + \frac{1}{R_4} + \frac{1}{R_6}\right) & \frac{1}{R_6} \\
+0 & \frac{1}{R_6} & -\left(\frac{1}{R_5} + \frac{1}{R_6}\right)
+\end{bmatrix}
+\begin{bmatrix}
+U_A \\ U_B \\ U_C
+\end{bmatrix}
+=
+\begin{bmatrix}
+\frac{U_2}{R_3} - \frac{U_1}{R_1} \\
+-I - \frac{U_2}{R_3} \\
+I
+\end{bmatrix}
+\end{align*}
+
+Po dosazení hodnot získáme výsledek \( U_A \), \( U_B \), \( U_C \):
+\nopagebreak
+\[
+\begin{array}{l}
+U_A = 49.2546 \, \mathrm{V} \\
+U_B = 59.9700 \, \mathrm{V} \\
+U_C = 10.5480 \, \mathrm{V}
+\end{array}
+\]
+
+Napětí mezi uzlem \( U_A \) a stanoveným referenčním uzlem je rovno napětí na rezistoru \( R_2 \).
+
+Pomocí Ohmova zákona dokážeme vypočítat proud \( I_{R2} \):
+
+\nopagebreak
+\[
+\begin{array}{l}
+I_{R2} = \frac{U_A}{R_2} \\
+I_{R2} = 1.0052 \, \mathrm{A} \\
+U_{R2} = U_A = 49.2546 \, \mathrm{V}
+\end{array}
+\]
