@@ -41,3 +41,6 @@ U_R1 = I * R1;
 
 U_R3 = U - U_R1 - U_R7 - U_R8;
 I_R3 = U_R3 / R3 * 1000;
+
+fprintf("I_R3 = %f mA\n", I_R3);
+fprintf("U_R3 = %f V\n", U_R3);

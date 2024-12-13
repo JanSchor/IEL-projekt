@@ -1,3 +1,164 @@
+
 \section{Příklad 2}
 
+
+
 \druhyZadani{F}
+
+Zjednodušíme rezistory \( R_1 \) a \( R_2 \) do jednoho rezistory \( R_{12} \).
+\nopagebreak
+\[
+R_{12} = R_1 + R_2
+\]
+\nopagebreak
+
+To stejné uděláme pro rezistory \( R_3 \) a \( R_4 \).
+\nopagebreak
+\[
+R_{34} = \frac{R_3 \cdot R_4}{R_3 + R_4}
+\]
+
+Zjednodušený obvod potom bude vypadat takhle:
+\par
+\nopagebreak
+\begin{circuitikz} \draw
+(0, 0)
+to[V, v<=$U_1$] (0, 2)
+to[generic, l=$R_{12}$] (3, 2)
+to[generic, l=$R_5$] (6, 2)
+to[V, v>=$U_2$] (6, 0)
+-- (0, 0)
+(3, 2)
+to[short, *-, i_=$I_{R34}$] (3, 1.5)
+to[generic, -*, l=$R_{34}$, v>=$U_{R34}$] (3, 0)
+;
+\end{circuitikz}
+\par
+\vspace{0.3cm}
+Na zjednodušeném obvodu již není samotný rezistor \( R_4 \), u kterého potřebujeme zjistit napětí a proud.
+Místo toho zjistíme tyto hodnoty na rezistoru \( R_{34} \) a z nich poté odvodíme požadované výsledky pro \( R_4 \).
+\par
+Jako další krok odpojíme zátěž a zkratujeme zdroje napětí, abychom mohli vypočítat vnitřní odpor skutečného zdroje napětí.
+Určíme si takto 2 body A a B, mezi kterými byl rezistor \( R_{34} \).
+\par
+\nopagebreak
+\begin{circuitikz}
+\draw
+(0, 0)
+-- (0, 2)
+to[generic, l=$R_{12}$] (3, 2)
+to[generic, l=$R_5$] (6, 2)
+-- (6, 0)
+-- (0, 0)
+(3, 2) to[short, *-o] (3, 1.5) node[anchor=west] {A}
+(3, 0) to[short, *-o] (3, 0.5) node[anchor=west] {B}
+;
+
+\draw
+(9, 1) to[short, *-o] (8, 1) node[anchor=east] {A}
+(9, 0) -- (9, 2)
+(9, 2) to[generic, l=$R_{12}$] (12, 2)
+(9, 0) to[generic, l=$R_5$] (12, 0)
+(12, 0) -- (12, 2)
+(12, 1) to[short, *-o] (13, 1) node[anchor=west] {B}
+;
+\end{circuitikz}
+\par
+\vspace{0.3cm}
+Vnitřní odpor \( R_i \) je tedy roven celkovému odporu rezistorů \( R_{12} \) a \( R_5 \).
+Použijeme tedy vzoreček pro paralelní zapojení rezistorů.
+\nopagebreak
+\[
+R_i = \frac{R_{12} \cdot R_5}{R_{12} + R_5}
+\]
+
+\samepage{
+Nyní si vytvořím obvod bez rezistoru \( R_{34} \) a pomocí II. K. Z. vypočítám celkový proud protékající tímto obvodem.
+Pojmenuji si ho jako proud \( I_x \)
+}
+\par
+\nopagebreak
+\begin{circuitikz} \draw
+(0, 0)
+to[V, v<=$U_1$] (0, 2)
+to[generic, l=$R_{12}$] (3, 2)
+to[generic, l=$R_5$, i_=$I_x$] (6, 2)
+to[V, v>=$U_2$] (6, 0)
+-- (0, 0)
+(3, 2) to[short, *-o] (3, 1.5) node[anchor=west] {A}
+(3, 0) to[short, *-o] (3, 0.5) node[anchor=west] {B}
+;
+\end{circuitikz}
+\par
+\vspace{0.3cm}
+\[
+\begin{aligned}
+0 &= I_x \cdot R_{12} + I_x \cdot R_5 + U_2 - U_1 \\
+0 &= I_x(R_5 + R_{12}) + U_2 - U_1 \\
+I_x &= \frac{U_1 - U_2}{R_5 + R_{12}}
+\end{aligned}
+\]
+\par
+Nyní si podle II. K. Z. vypočítáme napětí ve smičce a získáme tak napětí \( U_i \) mezi body A a B.
+\par
+\nopagebreak
+\begin{circuitikz} \draw
+(0, 0)
+to[V, v<=$U_1$] (0, 2)
+to[generic, l=$R_{12}$] (3, 2)
+to[generic, l=$R_5$, i_=$I_x$] (6, 2)
+to[V, v>=$U_2$] (6, 0)
+-- (0, 0)
+(3, 2) to[short, *-o] (3, 1.5) node[anchor=west] {A}
+(3, 0) to[short, *-o] (3, 0.5) node[anchor=west] {B}
+;
+\draw[->] (2.8, 1.5) to[short, l_=$U_i$] (2.8, 0.5);
+\draw[->] (1.2, 1.35) arc(110:-200:5mm);
+\end{circuitikz}
+\[
+\begin{aligned}
+0 &= U_i - U_i - I_x \cdot R_{12} \\
+U_i &= U_1 + R_{12} \cdot I_x
+\end{aligned}
+\]
+\par
+Obvod si nyní dokážeme překreslit na jeho variantu se skutečným zdrojem a zátěží.
+\par
+\nopagebreak
+\begin{circuitikz} \draw
+(0, 0)
+to[V, v<=$U_i$] (0, 2)
+to[generic, l=$R_i$, -o, i_=$I_{R34}$] (3, 2) node[anchor=west] {A}
+to[generic, l=$R_{34}$, o-o] (3, 0) node[anchor=west] {B}
+to[short, o-] (0, 0)
+;
+\end{circuitikz}
+\par
+\vspace{0.3cm}
+Z tohoto obvodu nyní dokážeme dopočítat proud a napětí na rezistoru \( R_{34} \).
+\nopagebreak
+\[
+\begin{array}{l}
+I_{R34} = \frac{U_i}{R_i + R_{34}} \\
+U_{R34} = R_{34} \cdot I_{R34}
+\end{array}
+\]
+\par
+\nopagebreak
+Nyní se vrátíme k obvodu před zjednodušením.
+Jelikož jsou rezistory \( R_3 \) a \( R_4 \) zapojeny paralelně, napětí na nich bude stejné jako na rezistoru \( R_{34} \).
+Jediné, co je tedy třeba dopočítat, je proud na \( R_4 \), který vypočítáme pomocí vzorečku.
+\[
+\begin{array}{l}
+U_{R4} = U_{R34} \\
+I_{R4} = \frac{U_{R34}}{R_4}
+\end{array}
+\]
+Po dosazení hodnot vypočítáme konkrétní hodnoty \( U_{R4} \) \( I_{R4} \).
+\nopagebreak
+\[
+\begin{array}{l}
+U_{R4} = 118.0477 \, \mathrm{V} \\
+I_{R4} = 181.6119 \, \mathrm{mA}
+\end{array}
+\]

@@ -23,3 +23,6 @@ X = A \ B;
 
 Ua = X(1, 1);
 I_R2 = Ua / R2;
+
+fprintf("I_R2 = %f mA\n", I_R2);
+fprintf("U_R2 = %f V\n", Ua);
