@@ -1,4 +1,154 @@
 \section{Příklad 1}
 
-
 \prvniZadani{F}
+Rezistory \( R_2 \), \( R_3 \) a \( R_4 \) tvoří trojúhelník.
+Použijeme převod a nahradíme je rezistory \( R_A \), \( R_B \) a \( R_C \).
+\par
+\nopagebreak
+\vspace{0.3cm}
+\begin{circuitikz}
+\draw
+(0, 1.5) node[anchor=east] {A}
+to[generic, o-o, l=$R_2$] (3, 3) node[anchor=west] {B}
+to[generic, o-o, l=$R_4$] (3, 0) node[anchor=west] {C}
+to[generic, o-o, l_=$R_3$] (0, 1.5)
+;
+\draw[-Latex] (5, 1.5) -- (7, 1.5);
+
+\draw
+(9, 1.5) node[anchor=east] {A}
+to[generic, o-*, l=$R_A$] (11, 1.5)
+to[generic, *-o, l=$R_B$] (12.5, 3) node[anchor=west] {B}
+(11, 1.5) to[generic, *-o, l=$R_C$] (12.5, 0) node[anchor=west] {C}
+;
+\end{circuitikz}
+\par
+\vspace{0.3cm}
+Nahradíme tedy rezistory v obvodu za \( R_A \), \( R_B \) a \( R_C \).
+Při této příležitosti také zjednodušíme některé části obvodu.
+Zdroje \( U_1 \) a \( U_2 \) nahradíme jedním zdrojem \( U_{12} \).
+Rezistory \( R_5 \) a \( R_6 \) nahradíme jedním rezistorem \( R_{56} \).
+\par
+\nopagebreak
+\begin{circuitikz}
+\draw
+(0, 0)
+to[V, v<=$U_{12}$] (0, 2)
+to[generic, l=$R_1$] (1.3, 2)
+to[generic, -*, l=$R_A$] (3, 2)
+(3, 1.3) -- (3, 2.8)
+to[generic, l=$R_B$] (4.5, 2.8)
+to[generic, l=$R_{56}$] (6, 2.8)
+(3, 1.3)
+to[generic, l=$R_C$] (4.5, 1.3)
+to[generic, -*, l=$R_7$] (6, 1.3)
+(6, 2.8) -- (6, 0)
+to[generic, l=$R_8$] (0, 0)
+;
+\end{circuitikz}
+\nopagebreak
+\[
+\begin{array}{l}
+U_{12} = U_1 + U_2 \\
+R_{56} = \frac{R_5 \cdot R_6}{R_5 + R_6}
+\end{array}
+\]
+\[
+\begin{array}{l}
+R_a = \frac{R_2 R_3}{R_2 + R_3 + R_4} \quad
+R_b = \frac{R_2 R_4}{R_2 + R_3 + R_4} \quad
+R_c = \frac{R_3 R_4}{R_2 + R_3 + R_4} \\
+\end{array}
+\]
+\par
+\nopagebreak
+Opět zjednodušíme obvod a překreslíme všechny sériově zapojené rezistory do jednoho.
+\par
+\nopagebreak
+\begin{circuitikz}
+\draw
+(0, 0)
+to[V, v<=$U_{12}$] (0, 2)
+to[generic, -*, l=$R_{1A}$] (3, 2)
+(3, 1.3) -- (3, 2.8)
+to[generic, l=$R_{B56}$] (6, 2.8)
+(3, 1.3)
+to[generic, -*, l=$R_{C7}$] (6, 1.3)
+(6, 2.8) -- (6, 0)
+to[generic, l=$R_8$] (0, 0)
+;
+\end{circuitikz}
+\nopagebreak
+\[
+\begin{array}{l}
+R_{1A} = R_1 + R_A \\
+R_{B56} = R_B + R_{56} \\
+R_{C7} = R_C + R_7
+\end{array}
+\]
+\par
+\nopagebreak
+Zjednodušíme paralelně zapojené rezistory do jednoho.
+\par
+\nopagebreak
+\begin{circuitikz}
+\draw
+(0, 0)
+to[V, v<=$U_{12}$] (0, 2)
+to[generic, l=$R_{1A}$] (3, 2)
+to[generic, l=$R_{B56C7}$] (3, 0)
+to[generic, l=$R_8$] (0, 0)
+;
+\end{circuitikz}
+\nopagebreak
+\[
+R_{B56C7} = \frac{R_{B56} \cdot R_{C7}}{R_{B56} + R_{C7}}
+\]
+\par
+\nopagebreak
+Nyní jsme schopni vypočítat celkový odpor \( R_{ekv} \).
+Následně vypočítáme celkový proud, který protéká obvodem.
+\[
+R_{ekv} = R_{1A} + R_{B56C7} + R_7 \\
+\]
+\[
+I = \frac{U_{12}}{R_{ekv}}
+\]
+Spočítáme napětí na rezistoru \( R_{B56C7} \) a pomocí toho získáme prout protékající rezistorem \( R_{C7} \).
+\[
+\begin{array}{l}
+U_{RB56C7} = R_{B56C7} \cdot I \\
+I_{RC7} = \frac{U_{RB56C7}}{R_{C7}}
+\end{array}
+\]
+\par
+\nopagebreak
+Cílem úlohy je získat hodnotu na rezistoru \( R_3 \).
+Pro její výpočet využijeme II. K. Z.
+Potřebujeme tedy zjistit napětí na všech rezistorech ve smyčce obsahující rezistor \( R_3 \).
+\[
+\begin{array}{l}
+U_{R1} = I \cdot R_1
+U_{R7} = I_{RC7} \cdot R_7 \\
+U_{R8} = I \cdot R_8 \\
+\end{array}
+\]
+\par
+\nopagebreak
+Známe vše potřebné pro dopočítání napětí na \( R_3 \).
+Po vypočítání napětí dokážeme spočítat i proud protékající tímto rezistorem.
+\[
+U_{R3} = U_{12} - U_{R1} - U_{R7} - U_{R8} \\
+\]
+\[
+I_{R3} = \frac{U_{R3}}{R_3}
+\]
+\par
+\nopagebreak
+Po dosazení hodnot získáme výsledky:
+\[
+\begin{array}{l}
+U_{R3} = 42.1208 \, \mathrm{V} \\
+I_{R3} = 76.5833 \, \mathrm{mA}
+\end{array}
+\]
