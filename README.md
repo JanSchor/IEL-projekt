@@ -1,4 +1,3 @@
-
 # IEL-projekt
 
-University project for electronics.
+Semester work for electronics.
