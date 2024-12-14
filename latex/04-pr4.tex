@@ -1,3 +1,76 @@
 \section{Příklad 4}
 
 \ctvrtyZadani{F}
+\nopagebreak
+Vytvořím si proudové smyčky a vytvořím si soustavu tří lineárních rovnic.
+
+\begin{align*}
+i_A: & \quad
+Z_{C1} \cdot I_A + R_1 \cdot I_A + U_1 + Z_{L2} \cdot (I_A - I_C) - U_2 = 0 \\
+i_B: & \quad
+Z_{L1} \cdot I_B + Z_{C2} \cdot (I_B - I_C) - U_1 = 0 \\
+i_C: & \quad
+R_2 \cdot I_C + Z_{L2} \cdot (I_C - I_A) + Z_{C2} \cdot (I_C - I_B) = 0
+\end{align*}
+
+\begin{align*}
+i_A: & \quad
+Z_{C1} \cdot I_A + R_1 \cdot I_A + Z_{L2} \cdot I_A + 0 \cdot I_B - Z_{L2} \cdot I_C = U_2 - U_1 \\
+i_B: & \quad
+0 \cdot I_A + Z_{L1} \cdot I_B + Z_{C2} \cdot I_B - Z_{C2} \cdot I_C = U_1 \\
+i_C: & \quad
+-Z_{L2} \cdot I_A - Z_{C2} \cdot I_B + R_2 \cdot I_C + Z_{L2} \cdot I_C + Z_{C2} \cdot I_C = 0
+\end{align*}
+
+\begin{align*}
+i_A: & \quad
+(Z_{C1} + R_1 + Z_{L2})I_A + 0I_B - Z_{L2} \cdot I_C = U_2 - U_1 \\
+i_B: & \quad
+0I_A + (Z_{L1} + Z_{C2})I_B - Z_{C2} \cdot I_C = U_1 \\
+i_C: & \quad
+-Z_{L2} \cdot I_A - Z_{C2} \cdot I_B + (R_2 + Z_{L2} + Z_{C2}) \cdot I_C = 0
+\end{align*}
+\par
+Nyní převedeme rovnice do matice a získáme tak hodnoty \( I_A \), \( I_B \) a \( I_C \):
+\nopagebreak
+\begin{align*}
+\begin{bmatrix}
+Z_{C1} + R_1 + Z_{L2} & 0 & -Z_{L2} \\
+0 & Z_{L1} + Z_{C2} & -Z_{C2} \\
+-Z_{L2} & -Z_{C2} & R_2 + Z_{L2} + Z_{C2}
+\end{bmatrix}
+\begin{bmatrix}
+I_A \\
+I_B \\
+I_C
+\end{bmatrix}
+=
+\begin{bmatrix}
+U_2 - U_1 \\
+U_1 \\
+0
+\end{bmatrix}
+\end{align*}
+\newpage
+
+Proud \( I_B \) je roven proudu na cívce \( L_1 \).
+Vypočítáme si tedy velikost tohoto proudu a z něj dopočítáme napětí.
+\nopagebreak
+
+\[
+\begin{array}{l}
+I_{L1} = I_B \\
+U_{L1} = I_{L1} \cdot Z_{L1} \\
+|U_{L1}| = 1.3508 \, \mathrm{V}
+\end{array}
+\]
+\par
+
+Dopočítáme fázový posuv pro \( \varphi_{L1} \).
+Za A a B si dosadíme reálnou a imaginární část proudu protékajícího \( L_1 \).
+\[
+\begin{array}{l}
+\varphi_{L1} = arctan(\frac{A}{B}) \\
+\varphi_{L1} = -1.4730 rad
+\end{array}
+\]

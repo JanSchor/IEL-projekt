@@ -5,6 +5,22 @@
 
 \patyZadani{F}
 
+Hodnoty v obvodu dokážeme popsat třemi rovnicemi:
+\nopagebreak
+\[
+\begin{array}{l}
+i = \frac{U_R}{R} \implies u_R = R \cdot i\\
+U = u_R + u_L \\
+i' = \frac{u_L}{L}; \quad i(0) = i_{LP}
+\end{array}
+\]
+
+Dosadíme vyjádřené \( u_R \) z první rovnice do druhé.
+\nopagebreak
+\[
+U = R \cdot i + u_L \implies u_L = U - R \cdot i
+\]
+
 Hodnotu \( u_L \) následně můžeme dosadt do 3. rovnice:
 \nopagebreak
 \[
@@ -14,7 +30,6 @@ L \cdot i' &= U - i \cdot R \\
 U &= L \cdot i' + R \cdot i; \quad i(0) = i_{LP}
 \end{aligned}
 \]
-\nopagebreak
 
 Nyní máme vytvořenou diferenciální rovnici.
 Sestavíme si charakteristickou rovnici.
@@ -26,13 +41,13 @@ i = 1
 \end{array}
 \]
 
-Dosadíme zaměněné hodnoty pro i' a i do diferenciální rovnice a vyjádříme si \( \lambda \).
+Dosadíme zaměněné hodnoty pro \( i' \) a i do diferenciální rovnice a vyjádříme si \( \lambda \).
 \nopagebreak
 \[
 L \cdot \lambda + R = 0 \implies \lambda = -\frac{R}{L}
 \]
 
-Vypíšeme si očekávané řešení a dosadíme za \( \lambda \) hodnoty, které jsme si vyjífřili.
+Vypíšeme si očekávané řešení a dosadíme za \( \lambda \) hodnoty, které jsme si vyjádřili.
 \nopagebreak
 \[
 \begin{array}{l}
@@ -40,13 +55,14 @@ i(t) = k(t) \cdot e^{\lambda \cdot t} \\
 i(t) = k(t) \cdot e^{-\frac{R}{L} \cdot t}
 \end{array}
 \]
-
+\newpage
 Nyní si rovnici zderivujeme a dosadíme ji do diferenciální rovnice. Takhle vytvořenou rovnici potom integrujeme.
 \nopagebreak
 \[
+\renewcommand{\arraystretch}{1.5}
 \begin{array}{l}
 i'(t) = k'(t) \cdot e^{\lambda \cdot t} \\
-k'(t) = \frac{U}{L} \cdot c^{\frac{R}{L} \cdot t} \\
+k'(t) = \frac{U}{L} \cdot e^{\frac{R}{L} \cdot t} \\
 k(t) = \frac{\frac{U}{L}}{\frac{R}{L}} \cdot e^{\frac{R}{L} \cdot t} + k \\
 k(t) = \frac{U}{R} \cdot e^{\frac{R}{L} \cdot t} + k
 \end{array}
@@ -55,13 +71,13 @@ k(t) = \frac{U}{R} \cdot e^{\frac{R}{L} \cdot t} + k
 Dosadíme \( k(t) \) do očekávaného řešení.
 \nopagebreak
 \[
+\renewcommand{\arraystretch}{1.5}
 \begin{array}{l}
 i_L = (\frac{U}{R} \cdot e^{\frac{R}{L} \cdot t} + k) \cdot e^{-\frac{R}{L} \cdot t} \\
 i_L = \frac{U}{R} \cdot e^{\frac{R}{L} \cdot t} \cdot e^{-\frac{R}{L} \cdot t} + k \cdot e^{-\frac{R}{L} \cdot t} \\
 i_L = \frac{U}{R} + k \cdot e^{-\frac{R}{L} \cdot t}
 \end{array}
 \]
-
 Dosadíme hodnoty pro t = 0 a dopočítáme derivační konstantu:
 \nopagebreak
 \[
@@ -70,7 +86,6 @@ Dosadíme hodnoty pro t = 0 a dopočítáme derivační konstantu:
 k = 7.5
 \end{array}
 \]
-\newpage
 Jakmile známe derivační konstantu, jsme schopni vytvořit funkci pro výpočet \( i_L \) v závislosti na čase t.
 Dosadíme tedy zadané hodnoty.
 \nopagebreak
@@ -79,11 +94,12 @@ i_L = \frac{1}{2} + 7.5 \cdot e^{-5t}
 \]
 
 Díky Ohmově zákonu víme, že by se měl proud v obvodu přibližovat k 500 mA.
-Pojďme si tedy dosadit hodnoty pro t = 0ů t = 0.2; t = 0.5ů t = 1 a t = 100:
+Pojďme si tedy dosadit hodnoty pro t = 0; t = 0.2; t = 0.5; t = 1 a t = 100:
 \nopagebreak
 \[
+\renewcommand{\arraystretch}{1.5}
 \begin{array}{l}
-i_L(0) = \frac{1}{2} + 7.5 \cdot e^{-5 \cdot 0.2} = 8 \, \mathrm{A} \\
+i_L(0) = \frac{1}{2} + 7.5 \cdot e^{-5 \cdot 0} = 8 \, \mathrm{A} \\
 i_L(0.2) = \frac{1}{2} + 7.5 \cdot e^{-5 \cdot 0.2} = 3.2591 \, \mathrm{A} \\
 i_L(0.5) = \frac{1}{2} + 7.5 \cdot e^{-5 \cdot 0.5} = 1.1156 \, \mathrm{A} \\
 i_L(1) = \frac{1}{2} + 7.5 \cdot e^{-5 \cdot 1} = 0.5505 \, \mathrm{A} \\
